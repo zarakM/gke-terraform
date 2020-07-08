@@ -3,6 +3,7 @@ terraform {
 }
 
 provider "google" {
+  credentials = file("terraform-2a643a77331b.json")//Change with your own credential file
   project = var.project_id
   region  = var.region
 }
@@ -58,7 +59,6 @@ resource "google_container_node_pool" "primary_nodes" {
       env = var.project_id
     }
 
-    # preemptible  = true
     machine_type = "n1-standard-1"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
